@@ -1,9 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import initialContactList from "../components/contacts.json";
 
 const initialContacts = {
   contacts: {
-    items: initialContactList,
+    items: [],
+    loading: false,
+    error: null,
+  },
+  filters: {
+    name: "",
   },
 };
 
