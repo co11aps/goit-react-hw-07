@@ -5,11 +5,11 @@ import css from "./ContactList.module.css";
 import {
   selectError,
   selectIsLoading,
-  selectVisibleContacts,
+  selectFilteredContacts,
 } from "../../redux/selectors";
 
 const ContactList = () => {
-  const filteredContacts = useSelector(selectVisibleContacts);
+  const filteredContacts = useSelector(selectFilteredContacts);
 
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
