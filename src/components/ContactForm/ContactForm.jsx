@@ -1,12 +1,11 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { nanoid } from "nanoid";
 import { useId } from "react";
 import * as Yup from "yup";
 import css from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
-// import { addContact } from "../../redux/contactsSlice";
+import { addContact } from "../../redux/contactsOps";
 
-const phoneRegExp = /^[0-9]{3}?-[0-9]{2}?-[0-9]{2}?$/;
+const phoneRegExp = /^[0-9]{3}?-[0-9]{3}?-[0-9]{4}?$/;
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -14,10 +13,10 @@ const validationSchema = Yup.object().shape({
     .max(50, "Too Long!")
     .required("Required"),
   number: Yup.string()
-    .min(3, "Too Short!")
-    .max(50, "Too Long!")
+    .min(12, "Too Short!")
+    .max(12, "Too Long!")
     .required("Required")
-    .matches(phoneRegExp, "Please follow pattern 123-45-67"),
+    .matches(phoneRegExp, "Please follow pattern xxx-xxx-xxxx"),
 });
 
 const initialValues = {
@@ -33,10 +32,9 @@ const ContactForm = () => {
 
   const handleSubmit = (values, actions) => {
     const newContact = {
-      id: nanoid(),
+      ...values,
       name: values.name.trim(),
       number: values.number.trim(),
-      // ...values,
     };
     dispatch(addContact(newContact));
 
@@ -71,7 +69,7 @@ const ContactForm = () => {
             <Field
               name="number"
               type="tel"
-              placeholder="123-45-67"
+              placeholder="xxx-xxx-xxxx"
               id={phoneNumberFieldId}
               className={css.field}
             />
