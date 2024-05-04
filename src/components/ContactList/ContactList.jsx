@@ -2,13 +2,23 @@ import { useSelector } from "react-redux";
 
 import Contact from "../Contact/Contact";
 import css from "./ContactList.module.css";
-import { selectVisibleContacts } from "../../redux/selectors";
+import {
+  selectError,
+  selectIsLoading,
+  selectVisibleContacts,
+} from "../../redux/selectors";
 
 const ContactList = () => {
   const filteredContacts = useSelector(selectVisibleContacts);
 
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
   return (
     <ul className={css.list}>
+      {isLoading && <p>Loading...</p>}
+      {error && <p>Something went wrong! Try to reload the page!</p>}
+
       {filteredContacts.map((contact) => {
         return (
           <li className={css.card} key={contact.id}>
