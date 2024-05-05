@@ -15,10 +15,10 @@ const Contact = ({ id, name, number }) => {
           <BsFillPersonFill size={14} className={css.icon} />
           {name}
         </p>
-        <p className={css.text}>
+        <a href={`tel:${number.split("-").join("")}`} className={css.tel}>
           <BsFillTelephoneFill size={14} className={css.icon} />
           {number}
-        </p>
+        </a>
       </div>
       <button className={css.btn} onClick={() => onDelete(id)}>
         Delite

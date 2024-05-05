@@ -1,5 +1,6 @@
 .icon {
     margin-right: 8px;
+    color: black;
 }
 
 .text {
@@ -10,4 +11,8 @@
     height: 28px;
     width: 84px;
     font-size: 16px;
+}
+
+.tel {
+    text-decoration: none;
 }
