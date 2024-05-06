@@ -14,16 +14,12 @@ const ContactList = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
-  const sortedContacts = filteredContacts.toSorted((a, b) =>
-    a.name.localeCompare(b.name)
-  );
-
   return (
     <ul className={css.list}>
       {isLoading && <p>Loading...</p>}
       {error && <p>Something went wrong! Try to reload the page!</p>}
 
-      {sortedContacts.map((contact) => {
+      {filteredContacts.map((contact) => {
         return (
           <li className={css.card} key={contact.id}>
             <Contact
